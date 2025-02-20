@@ -100,26 +100,26 @@ def stop_playback(session):
     time.sleep(5)
 
     try:
-        # Construct the URL to stop playback
-        stop_url = f"{JELLYFIN_API_URL}/Sessions/{session_id}/Playing/Stop?ApiKey={JELLYFIN_API_TOKEN}"
+        # Construct the URL to pause playback
+        stop_url = f"{JELLYFIN_API_URL}/Sessions/{session_id}/Playing/Pause?ApiKey={JELLYFIN_API_TOKEN}"
         
-        # Send the request to stop playback
+        # Send the request to pause playback
         req = urllib.request.urlopen(urllib.request.Request(stop_url, method="POST"))
-        print(f"👤 {session.get('NotificationUsername', 'Unknown')} has played {int(EPISODE_COUNT)} episodes in a row.\n❗️ ⏹️ Stopping Playback ❗️\n🌐 Device Address: {session.get('RemoteEndPoint', 'Unknown')}")
+        print(f"👤 {session.get('NotificationUsername', 'Unknown')} has played {int(EPISODE_COUNT)} episodes in a row.\n❗️ ⏹️ Pausing Playback ❗️\n🌐 Device Address: {session.get('RemoteEndPoint', 'Unknown')}")
         print()
 
         # Wait for 2 seconds before sending the next command
-        time.sleep(2)
+        #time.sleep(2)
 
         # Construct the URL to send the 'GoHome' command
-        go_home_url = f"{JELLYFIN_API_URL}/Sessions/{session_id}/Command/GoHome?ApiKey={JELLYFIN_API_TOKEN}"
+        #go_home_url = f"{JELLYFIN_API_URL}/Sessions/{session_id}/Command/GoHome?ApiKey={JELLYFIN_API_TOKEN}"
         
         # Send the request to navigate back to the home screen
-        req = urllib.request.urlopen(urllib.request.Request(go_home_url, method="POST"))
+        #req = urllib.request.urlopen(urllib.request.Request(go_home_url, method="POST"))
 
         return True
     except Exception as e:
-        print(f"Error stopping playback for session {session_id}: {e}")
+        print(f"Error pausing playback for session {session_id}: {e}")
         return False
 
 def display_message(session_id, message, header="Notice", timeout_ms=5000):

@@ -101,7 +101,7 @@ def stop_playback(session):
 
     try:
         # Construct the URL to pause playback
-        stop_url = f"{JELLYFIN_API_URL}/Sessions/{session_id}/Playing/Pause?ApiKey={JELLYFIN_API_TOKEN}"
+        stop_url = f"{JELLYFIN_API_URL}/Sessions/{session_id}/Playing/Pause/?ApiKey={JELLYFIN_API_TOKEN}"
         
         # Send the request to pause playback
         req = urllib.request.urlopen(urllib.request.Request(stop_url, method="POST"))
